@@ -1,6 +1,6 @@
-package med.voll.api.dataAddress;
+package med.voll.api.dtos;
 
-public record DataAddress(
+public record DataAddressDTO(
         String street, String district, String city, int number, String complement) {
 
             

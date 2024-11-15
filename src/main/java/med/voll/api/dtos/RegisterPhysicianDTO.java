@@ -1,13 +1,13 @@
-package med.voll.api.physician;
+package med.voll.api.dtos;
 
-import med.voll.api.dataAddress.DataAddress;
+import med.voll.api.physician.Specialty;
 
 public record RegisterPhysicianDTO(
                 String name,
                 String email,
                 String document,
                 Specialty specialty,
-                DataAddress address ) {
-                    
+                DataAddressDTO address ) {
+
 
 }
