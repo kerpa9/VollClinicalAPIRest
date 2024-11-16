@@ -13,10 +13,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.dataAddress.Address;
-import med.voll.api.dtos.RegisterPhysicianDTO;
 
-@Table(name = "phycisians")
-@Entity(name = "phycisian")
+@Table(name = "physician_model")
+@Entity(name = "Physician_model")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
