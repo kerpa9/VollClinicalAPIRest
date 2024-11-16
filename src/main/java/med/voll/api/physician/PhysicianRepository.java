@@ -1,6 +1,7 @@
 package med.voll.api.physician;
 
-public interface PhysicianRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PhysicianRepository extends JpaRepository<PhysicianModel, Long> {
 
 }

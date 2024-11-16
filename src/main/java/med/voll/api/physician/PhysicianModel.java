@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.dataAddress.Address;
+import med.voll.api.dtos.RegisterPhysicianDTO;
 
 @Table(name = "phycisians")
 @Entity(name = "phycisian")
@@ -33,5 +34,14 @@ public class PhysicianModel {
     // Relations to class address
     @Embedded
     private Address address;
+
+    public PhysicianModel(RegisterPhysicianDTO parameter) {
+        this.name = parameter.name();
+        this.email = parameter.email();
+        this.document = parameter.document();
+        this.specialty = parameter.specialty();
+        this.address = new Address(parameter.address());
+
+    }
 
 }
