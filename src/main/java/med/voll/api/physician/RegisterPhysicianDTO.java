@@ -12,6 +12,8 @@ public record RegisterPhysicianDTO(
                 @NotBlank
                 String name,
                 @NotBlank
+                String phone,
+                @NotBlank
                 @Email
                 String email,
                 @NotBlank

@@ -26,6 +26,7 @@ public class PhysicianModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String phone;
     private String email;
     private String document;
     @Enumerated(EnumType.STRING)
@@ -36,6 +37,7 @@ public class PhysicianModel {
 
     public PhysicianModel(RegisterPhysicianDTO parameter) {
         this.name = parameter.name();
+        this.phone = parameter.phone();
         this.email = parameter.email();
         this.document = parameter.document();
         this.specialty = parameter.specialty();
