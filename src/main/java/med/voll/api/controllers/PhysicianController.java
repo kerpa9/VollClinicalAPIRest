@@ -1,8 +1,9 @@
 package med.voll.api.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +30,11 @@ public class PhysicianController {
 
     }
 
+    // Overriding pageable values @PageableDefault(size = 2, ...)
     @GetMapping
-    public List<ListDataPhysicianDTO> listPhysician() {
-        return physicianRepository.findAll().stream().map(ListDataPhysicianDTO::new).toList();
+    public Page<ListDataPhysicianDTO> listPthysician(@PageableDefault(size = 2) Pageable pageable) {
+        return physicianRepository.findAll(pageable).map(ListDataPhysicianDTO::new);
+
     }
 
 }
