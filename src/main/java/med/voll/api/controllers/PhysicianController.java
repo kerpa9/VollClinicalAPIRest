@@ -55,11 +55,24 @@ public class PhysicianController {
 
     // Overriding pageable values @PageableDefault(size = 2, ...)
     @GetMapping
-    public Page<ListDataPhysicianDTO> listPthysician(@PageableDefault(size = 5) Pageable pageable) {
-        return physicianRepository.findByActiveTrue(pageable).map(ListDataPhysicianDTO::new);
+    public ResponseEntity<Page<ListDataPhysicianDTO>> listPthysician(@PageableDefault(size = 5) Pageable pageable) {
+        return ResponseEntity.ok(physicianRepository.findByActiveTrue(pageable).map(ListDataPhysicianDTO::new));
         // return
         // physicianRepository.findByActiveTrue(pageable).map(ListDataPhysicianDTO::new);
         // return physicianRepository.findAll(pageable).map(ListDataPhysicianDTO::new);
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DataResponsePhysicianDTO> getByIdPhysician(@PathVariable Long id) {
+        PhysicianModel physicianModel = physicianRepository.getReferenceById(id);
+        var physicianData = new DataResponsePhysicianDTO(physicianModel.getId(), physicianModel.getName(),
+                physicianModel.getEmail(),
+                physicianModel.getPhone(), physicianModel.getSpecialty().toString(),
+                new DataAddressDTO(physicianModel.getAddress().getStreet(),
+                        physicianModel.getAddress().getDistrict(), physicianModel.getAddress().getCity(),
+                        physicianModel.getAddress().getNumber(), physicianModel.getAddress().getComplement()));
+        return ResponseEntity.ok(physicianData);
 
     }
 
@@ -96,4 +109,5 @@ public class PhysicianController {
         return ResponseEntity.noContent().build();
 
     }
+
 }
