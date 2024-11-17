@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.dataAddress.Address;
+import med.voll.api.dto.RegisterPhysicianDTO;
 
 @Table(name = "physician_model")
 @Entity(name = "Physician_model")
