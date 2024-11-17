@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.dto.ListDataPhysicianDTO;
 import med.voll.api.dto.RegisterPhysicianDTO;
+import med.voll.api.dto.UpdatePhysicianDTO;
 import med.voll.api.physician.PhysicianModel;
 import med.voll.api.repository.PhysicianRepository;
 
@@ -38,9 +40,11 @@ public class PhysicianController {
 
     }
 
-    
     @PutMapping
-    public void updatePhysician(){}
-
+    @Transactional
+    public void updatePhysician(@RequestBody @Valid UpdatePhysicianDTO updatePhysicianDTO) {
+        PhysicianModel physicianModel = physicianRepository.getReferenceById(updatePhysicianDTO.id());
+        physicianModel.updateDatas(updatePhysicianDTO);
+    }
 
 }
