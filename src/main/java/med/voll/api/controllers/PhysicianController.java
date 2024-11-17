@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,8 +37,11 @@ public class PhysicianController {
 
     // Overriding pageable values @PageableDefault(size = 2, ...)
     @GetMapping
-    public Page<ListDataPhysicianDTO> listPthysician(@PageableDefault(size = 2) Pageable pageable) {
-        return physicianRepository.findAll(pageable).map(ListDataPhysicianDTO::new);
+    public Page<ListDataPhysicianDTO> listPthysician(@PageableDefault(size = 5) Pageable pageable) {
+        return physicianRepository.findByActiveTrue(pageable).map(ListDataPhysicianDTO::new);
+        // return
+        // physicianRepository.findByActiveTrue(pageable).map(ListDataPhysicianDTO::new);
+        // return physicianRepository.findAll(pageable).map(ListDataPhysicianDTO::new);
 
     }
 
@@ -47,4 +52,21 @@ public class PhysicianController {
         physicianModel.updateDatas(updatePhysicianDTO);
     }
 
+    // Delete database
+    // @DeleteMapping("/{id}")
+    // @Transactional
+    // public void deletePhysician(@PathVariable Long id){
+    // PhysicianModel physicianModel = physicianRepository.getReferenceById(id);
+    // physicianModel.delete(physicianModel);
+
+    // }
+
+    // Logical delete
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deletePhysician(@PathVariable Long id) {
+        PhysicianModel physicianModel = physicianRepository.getReferenceById(id);
+        physicianModel.setStausInactivePhysician();
+
+    }
 }

@@ -37,7 +37,10 @@ public class PhysicianModel {
     @Embedded
     private Address address;
 
+    private Boolean active;
+
     public PhysicianModel(RegisterPhysicianDTO parameter) {
+        this.active = true;
         this.name = parameter.name();
         this.phone = parameter.phone();
         this.email = parameter.email();
@@ -63,6 +66,10 @@ public class PhysicianModel {
 
             this.address = address.updateDatasAddress(updatePhysicianDTO.address());
         }
+    }
+
+    public void setStausInactivePhysician() {
+        this.active = false;
     }
 
 }
