@@ -1,4 +1,4 @@
-package med.voll.api.physician;
+package med.voll.api.domain.physician;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -12,9 +12,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.dataAddress.Address;
-import med.voll.api.dto.RegisterPhysicianDTO;
-import med.voll.api.dto.UpdatePhysicianDTO;
+import med.voll.api.config.dto.RegisterPhysicianDTO;
+import med.voll.api.config.dto.UpdatePhysicianDTO;
+import med.voll.api.domain.dataAddress.Address;
 
 @Table(name = "physician_model")
 @Entity(name = "Physician_model")

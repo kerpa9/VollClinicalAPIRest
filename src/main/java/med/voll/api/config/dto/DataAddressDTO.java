@@ -1,4 +1,4 @@
-package med.voll.api.dto;
+package med.voll.api.config.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

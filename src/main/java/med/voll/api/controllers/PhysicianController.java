@@ -19,12 +19,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.dto.DataAddressDTO;
-import med.voll.api.dto.DataResponsePhysicianDTO;
-import med.voll.api.dto.ListDataPhysicianDTO;
-import med.voll.api.dto.RegisterPhysicianDTO;
-import med.voll.api.dto.UpdatePhysicianDTO;
-import med.voll.api.physician.PhysicianModel;
+import med.voll.api.config.dto.DataAddressDTO;
+import med.voll.api.config.dto.DataResponsePhysicianDTO;
+import med.voll.api.config.dto.ListDataPhysicianDTO;
+import med.voll.api.config.dto.RegisterPhysicianDTO;
+import med.voll.api.config.dto.UpdatePhysicianDTO;
+import med.voll.api.domain.physician.PhysicianModel;
 import med.voll.api.repository.PhysicianRepository;
 
 @RestController
