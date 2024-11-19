@@ -7,6 +7,6 @@ import med.voll.api.domain.users.LoginUsers;
 
 public interface LoginRepository extends JpaRepository<LoginUsers, Long> {
 
-    UserDetails findByUsername(String username);
+    UserDetails findByLogin(String username);
 
 }
