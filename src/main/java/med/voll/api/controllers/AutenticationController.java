@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import med.voll.api.config.dto.DataLoginDTO;
+import med.voll.api.config.dto.DatosJWTTokenDTO;
+import med.voll.api.domain.users.LoginUsers;
+import med.voll.api.services.TokenServices;
 
 @RestController
 @RequestMapping("/api/v1/login")
@@ -20,12 +23,16 @@ public class AutenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenServices tokenServices;
+
     @PostMapping
     public ResponseEntity autenticationUser(@RequestBody @Valid DataLoginDTO dataLoginDTO) {
 
         Authentication token = new UsernamePasswordAuthenticationToken(dataLoginDTO.login(), dataLoginDTO.password());
-        authenticationManager.authenticate(token);
-        return ResponseEntity.ok().build();
+        var userAuth = authenticationManager.authenticate(token);
+        var jwtToken = tokenServices.generateToken((LoginUsers) userAuth.getPrincipal());
+        return ResponseEntity.ok(new DatosJWTTokenDTO(jwtToken));
 
     }
 
