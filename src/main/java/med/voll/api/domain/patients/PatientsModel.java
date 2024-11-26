@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 import med.voll.api.config.dto.RegisterPatiensDTO;
 import med.voll.api.domain.dataAddress.Address;
 
-@Table(name = "patiens_model")
-@Entity(name = "Patiens_model")
+@Table(name = "patients_model")
+@Entity(name = "Patients_model")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
