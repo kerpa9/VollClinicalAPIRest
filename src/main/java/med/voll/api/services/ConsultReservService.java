@@ -1,11 +1,14 @@
 package med.voll.api.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.config.dto.ConsultationsDataDTO;
 import med.voll.api.config.handleException.ValidateException;
 import med.voll.api.domain.consultations.ConsultationModel;
+import med.voll.api.domain.consultations.validations.IValidateConsultation;
 import med.voll.api.domain.physician.PhysicianModel;
 import med.voll.api.repository.ConsultationRepository;
 import med.voll.api.repository.PatientsRepository;
@@ -22,6 +25,9 @@ public class ConsultReservService {
     @Autowired
     private ConsultationRepository consultationRepository;
 
+    @Autowired
+    private List<IValidateConsultation> validations;
+
     public void reserv(ConsultationsDataDTO consultationsDataDTO) {
 
         if (consultationsDataDTO.idPatients() != null
@@ -34,6 +40,12 @@ public class ConsultReservService {
             throw new ValidateException("Not found physician by id");
         }
 
+        // Validations
+        
+        validations.forEach(v -> v.validate(consultationsDataDTO));
+
+
+        // 
         var physician = choosePhysician(consultationsDataDTO);
         var patients = patientsRepository.findById(consultationsDataDTO.idPatients()).get();
 
@@ -55,7 +67,8 @@ public class ConsultReservService {
 
         }
 
-        return physicianRepository.choosePhysicianRandomAvailable(consultationsDataDTO.specialty(), consultationsDataDTO.date());
+        return physicianRepository.choosePhysicianRandomAvailable(consultationsDataDTO.specialty(),
+                consultationsDataDTO.date());
 
     }
 

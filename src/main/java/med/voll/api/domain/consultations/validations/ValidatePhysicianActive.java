@@ -1,14 +1,20 @@
 package med.voll.api.domain.consultations.validations;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import jakarta.validation.ValidationException;
 import med.voll.api.config.dto.ConsultationsDataDTO;
 import med.voll.api.repository.PhysicianRepository;
 
-public class PhysicianActive {
 
+@Component
+public class ValidatePhysicianActive implements IValidateConsultation {
+
+    @Autowired
     private PhysicianRepository physicianRepository;
 
-    public void validatePhysician(ConsultationsDataDTO consultationsDataDTO) {
+    public void validate(ConsultationsDataDTO consultationsDataDTO) {
 
         if (consultationsDataDTO.idPhysician() == null) {
             return;

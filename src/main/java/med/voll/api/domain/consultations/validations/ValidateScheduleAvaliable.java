@@ -5,7 +5,8 @@ import java.time.DayOfWeek;
 import jakarta.validation.ValidationException;
 import med.voll.api.config.dto.ConsultationsDataDTO;
 
-public class ValidateScheduleAvaliable {
+
+public class ValidateScheduleAvaliable implements IValidateConsultation{
 
     public void validate(ConsultationsDataDTO consultationsDataDTO) {
         var dateConsultation = consultationsDataDTO.date();
