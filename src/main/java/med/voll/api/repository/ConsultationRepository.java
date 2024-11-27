@@ -10,6 +10,8 @@ public interface ConsultationRepository extends JpaRepository<ConsultationModel,
 
     boolean existsByPatientsIdAndDateBetween(Long idPatients, LocalDateTime firstSchedule,
             LocalDateTime lastSchedule);
+
+    boolean existByPhysicianIdAndDate(Long idPhysician, LocalDateTime date);
     
     
 }
