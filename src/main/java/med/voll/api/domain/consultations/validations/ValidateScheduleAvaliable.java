@@ -13,10 +13,10 @@ public class ValidateScheduleAvaliable {
         var scheduleBeforeClinicalOpen = dateConsultation.getHour() < 7;
         var scheduleAfterClinicalOpen = dateConsultation.getHour() > 18;
 
-        if(sunday || scheduleAfterClinicalOpen|| scheduleBeforeClinicalOpen){
+        if (sunday || scheduleAfterClinicalOpen || scheduleBeforeClinicalOpen) {
             throw new ValidationException("Limit the time schedule for reservations in the clinic");
         }
-        
+
     }
 
 }
