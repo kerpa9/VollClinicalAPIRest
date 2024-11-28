@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.config.dto.ConsultationsDataDTO;
+import med.voll.api.config.dto.DetailsConsultations;
 import med.voll.api.config.handleException.ValidateException;
 import med.voll.api.domain.consultations.ConsultationModel;
 import med.voll.api.domain.consultations.validations.IValidateConsultation;
@@ -29,7 +30,7 @@ public class ConsultReservService {
     @Autowired
     private List<IValidateConsultation> validations;
 
-    public void reserv(ConsultationsDataDTO consultationsDataDTO) {
+    public DetailsConsultations reserv(ConsultationsDataDTO consultationsDataDTO) {
 
         if (consultationsDataDTO.idPatients() != null
                 && !patientsRepository.existsById(consultationsDataDTO.idPatients())) {
@@ -44,13 +45,18 @@ public class ConsultReservService {
         // Validations
         validations.forEach(v -> v.validate(consultationsDataDTO));
 
-        
         var physician = choosePhysician(consultationsDataDTO);
+
+        if (physician==null) {
+            throw new ValidateException("The physician is not available at this schedule");
+        }
         var patients = patientsRepository.findById(consultationsDataDTO.idPatients()).get();
 
         var consult = new ConsultationModel(null, physician, patients,
                 consultationsDataDTO.date());
         consultationRepository.save(consult);
+
+        return new DetailsConsultations(consult);
 
     }
 

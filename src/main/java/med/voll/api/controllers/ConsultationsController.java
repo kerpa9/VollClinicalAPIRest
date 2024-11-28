@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.config.dto.ConsultationsDataDTO;
-import med.voll.api.config.dto.DetailsConsultations;
 import med.voll.api.services.ConsultReservService;
 
 @RestController
 @RequestMapping("/api/v1/consultations")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultationsController {
 
     @Autowired
@@ -25,10 +26,9 @@ public class ConsultationsController {
     @Transactional
     public ResponseEntity reservation(@RequestBody @Valid ConsultationsDataDTO consultationsDataDTO) {
 
-        consultReservService.reserv(consultationsDataDTO);
-        System.out.println(consultationsDataDTO);
-        return ResponseEntity.ok(new DetailsConsultations(consultationsDataDTO.id(), consultationsDataDTO.idPatients(),
-                consultationsDataDTO.idPhysician(), consultationsDataDTO.date()));
+        var consultDetails = consultReservService.reserv(consultationsDataDTO);
+
+        return ResponseEntity.ok(consultDetails);
     }
 
 }
