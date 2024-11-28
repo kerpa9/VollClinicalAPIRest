@@ -13,6 +13,7 @@ public class ValidationNotMoreOne implements  IValidateConsultation{
     @Autowired
     private ConsultationRepository consultationRepository;
 
+    @Override
     public void validate(ConsultationsDataDTO consultationsDataDTO) {
 
         var firstSchedule = consultationsDataDTO.date().withHour(7);

@@ -20,6 +20,7 @@ public class ConsultationsController {
     @Autowired
     private ConsultReservService consultReservService;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping
     @Transactional
     public ResponseEntity reservation(@RequestBody @Valid ConsultationsDataDTO consultationsDataDTO) {

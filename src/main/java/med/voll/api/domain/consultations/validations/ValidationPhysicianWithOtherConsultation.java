@@ -13,6 +13,7 @@ public class ValidationPhysicianWithOtherConsultation implements IValidateConsul
     @Autowired
     private ConsultationRepository consultationRepository;
 
+    @Override
     public void validate(ConsultationsDataDTO consultationsDataDTO) {
         var physicianWithOtherConsultation = consultationRepository
                 .existsByPhysicianModelIdAndDate(consultationsDataDTO.idPhysician(), consultationsDataDTO.date());

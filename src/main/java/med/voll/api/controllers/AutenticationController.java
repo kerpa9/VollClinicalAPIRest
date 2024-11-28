@@ -26,6 +26,7 @@ public class AutenticationController {
     @Autowired
     private TokenServices tokenServices;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping
     public ResponseEntity autenticationUser(@RequestBody @Valid DataLoginDTO dataLoginDTO) {
 

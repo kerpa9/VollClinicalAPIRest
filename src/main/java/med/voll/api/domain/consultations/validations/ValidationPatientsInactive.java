@@ -14,6 +14,7 @@ public class ValidationPatientsInactive implements IValidateConsultation {
     @Autowired
     private PatientsRepository patientsRepository;
 
+    @Override
     public void validate(ConsultationsDataDTO consultationsDataDTO) {
         var patientInactive = patientsRepository.findActivoById(consultationsDataDTO.idPatients());
 

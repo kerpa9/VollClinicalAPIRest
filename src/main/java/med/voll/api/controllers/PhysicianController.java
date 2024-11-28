@@ -76,6 +76,7 @@ public class PhysicianController {
 
     }
 
+    @SuppressWarnings("rawtypes")
     @PutMapping
     @Transactional
     public ResponseEntity updatePhysician(@RequestBody @Valid UpdatePhysicianDTO updatePhysicianDTO) {
@@ -103,6 +104,7 @@ public class PhysicianController {
     // Logical delete
     @DeleteMapping("/{id}")
     @Transactional
+    @SuppressWarnings("rawtypes")
     public ResponseEntity deletePhysician(@PathVariable Long id) {
         PhysicianModel physicianModel = physicianRepository.getReferenceById(id);
         physicianModel.setStausInactivePhysician();

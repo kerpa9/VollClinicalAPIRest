@@ -12,12 +12,15 @@ import med.voll.api.config.handleException.ValidateException;
 @RestControllerAdvice
 public class CatchError {
 
+    @SuppressWarnings("rawtypes")
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity notFound404() {
         return ResponseEntity.notFound().build();
 
+
     }
 
+    @SuppressWarnings("rawtypes")
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity batRequest400(MethodArgumentNotValidException e) {
 
@@ -25,7 +28,8 @@ public class CatchError {
         return ResponseEntity.badRequest().body(errors);
 
     }
-  
+
+    @SuppressWarnings("rawtypes")
     @ExceptionHandler(ValidateException.class)
     public ResponseEntity manageErrorValidate(ValidateException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
