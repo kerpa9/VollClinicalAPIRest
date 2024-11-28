@@ -8,14 +8,16 @@ import med.voll.api.domain.physician.Specialty;
 
 public record ConsultationsDataDTO(
 
-        Long idPhysician,
+                Long id,
 
-        @NotNull Long idPatients,
-      
-        @NotNull @Future LocalDateTime date,
+                Long idPhysician,
 
-        Specialty specialty
-        
-        ) {
+                @NotNull Long idPatients,
+
+                @NotNull @Future LocalDateTime date,
+
+                Specialty specialty
+
+) {
 
 }

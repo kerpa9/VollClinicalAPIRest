@@ -22,12 +22,12 @@ public class ConsultationsController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity reservation (@RequestBody @Valid ConsultationsDataDTO consultationsDataDTO){
+    public ResponseEntity reservation(@RequestBody @Valid ConsultationsDataDTO consultationsDataDTO) {
 
         consultReservService.reserv(consultationsDataDTO);
         System.out.println(consultationsDataDTO);
-        return ResponseEntity.ok(new DetailsConsultations(null, null, null, null));
+        return ResponseEntity.ok(new DetailsConsultations(consultationsDataDTO.id(), consultationsDataDTO.idPatients(),
+                consultationsDataDTO.idPhysician(), consultationsDataDTO.date()));
     }
 
-    
 }

@@ -8,7 +8,7 @@ import med.voll.api.config.dto.ConsultationsDataDTO;
 import med.voll.api.repository.ConsultationRepository;
 
 @Component
-public class ValidationNotMoreOne implements IValidateConsultation{
+public class ValidationNotMoreOne implements  IValidateConsultation{
 
     @Autowired
     private ConsultationRepository consultationRepository;
@@ -18,7 +18,7 @@ public class ValidationNotMoreOne implements IValidateConsultation{
         var firstSchedule = consultationsDataDTO.date().withHour(7);
         var lastSchedule = consultationsDataDTO.date().withHour(18);
         var patientsOtherConsult = consultationRepository
-                .existsByPatientsIdAndDateBetween(consultationsDataDTO.idPatients(), firstSchedule, lastSchedule);
+                .existsByPatientsModelIdAndDateBetween(consultationsDataDTO.idPatients(), firstSchedule, lastSchedule);
 
                 if(patientsOtherConsult){
                     throw new ValidationException("Patients have already consulted elsewhere.");

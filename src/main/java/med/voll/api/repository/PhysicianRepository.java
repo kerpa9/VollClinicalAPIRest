@@ -15,26 +15,26 @@ public interface PhysicianRepository extends JpaRepository<PhysicianModel, Long>
     Page<PhysicianModel> findByActiveTrue(Pageable pageable);
 
     @Query("""
-            select m from PhysicianModel m
-            where
-            m.active=1
-            and
-            m.specialty= :specialty
-            and m.id not in(
-                select c.physician.id from Consult c
+                select m from Physician_model m
                 where
-                c.date= :date
-            )
-            order by rand()
-            limit 1
-            """)
-    PhysicianModel choosePhysicianRandomAvailable(Specialty specialty, LocalDateTime date);
+                m.active=TRUE
+                and
+                m.specialty= :specialty
+                and m.id not in(
+                     select c.physicianModel.id from Consultations_model c
+                     where
+                     c.date= :date
+                )
+                order by rand()
+                limit 1
+                """)
+    PhysicianModel choosephysicianModelRandomAvailable(Specialty specialty, LocalDateTime date);
 
     @Query("""
-            select p.active
-            from PhysicianModel p
+            select d.active
+            from Physician_model d
             where
-            p.id=:idPhysician
+            d.id=:idPhysician
 
             """)
     boolean findActiveById(Long idPhysician);

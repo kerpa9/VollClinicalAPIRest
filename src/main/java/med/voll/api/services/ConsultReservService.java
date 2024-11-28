@@ -19,6 +19,7 @@ public class ConsultReservService {
 
     @Autowired
     private PhysicianRepository physicianRepository;
+
     @Autowired
     private PatientsRepository patientsRepository;
 
@@ -41,11 +42,9 @@ public class ConsultReservService {
         }
 
         // Validations
-        
         validations.forEach(v -> v.validate(consultationsDataDTO));
 
-
-        // 
+        
         var physician = choosePhysician(consultationsDataDTO);
         var patients = patientsRepository.findById(consultationsDataDTO.idPatients()).get();
 
@@ -67,7 +66,7 @@ public class ConsultReservService {
 
         }
 
-        return physicianRepository.choosePhysicianRandomAvailable(consultationsDataDTO.specialty(),
+        return physicianRepository.choosephysicianModelRandomAvailable(consultationsDataDTO.specialty(),
                 consultationsDataDTO.date());
 
     }

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public record DetailsConsultations(
     Long id,
     Long idPhysician,
-    Long idPatiends,
+    Long idPatients,
     LocalDateTime date
 
 ) {

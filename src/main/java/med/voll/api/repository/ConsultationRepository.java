@@ -8,10 +8,10 @@ import med.voll.api.domain.consultations.ConsultationModel;
 
 public interface ConsultationRepository extends JpaRepository<ConsultationModel, Long>{
 
-    boolean existsByPatientsIdAndDateBetween(Long idPatients, LocalDateTime firstSchedule,
+    boolean existsByPatientsModelIdAndDateBetween(Long PatientsId, LocalDateTime firstSchedule,
             LocalDateTime lastSchedule);
 
-    boolean existByPhysicianIdAndDate(Long idPhysician, LocalDateTime date);
+    boolean existsByPhysicianModelIdAndDate(Long idPhysicianId, LocalDateTime date);
     
     
 }

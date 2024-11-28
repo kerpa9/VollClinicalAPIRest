@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jakarta.persistence.EntityNotFoundException;
 import med.voll.api.config.dto.ManageErrorDTO;
+import med.voll.api.config.handleException.ValidateException;
 
 @RestControllerAdvice
 public class CatchError {
@@ -24,5 +25,13 @@ public class CatchError {
         return ResponseEntity.badRequest().body(errors);
 
     }
+  
+    @ExceptionHandler(ValidateException.class)
+    public ResponseEntity manageErrorValidate(ValidateException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+
+    }
+
+
 
 }
