@@ -8,7 +8,7 @@ import med.voll.api.domain.physician.Specialty;
 
 public record ConsultationsDataDTO(
 
-                Long id,
+                // Long id,
 
                 Long idPhysician,
 
@@ -19,5 +19,10 @@ public record ConsultationsDataDTO(
                 Specialty specialty
 
 ) {
+
+    // public void ConsultationsDataDTO(long idPhysician, long idPatients, LocalDateTime date, Specialty specialty) {
+    //     throw new UnsupportedOperationException("Not supported yet.");
+
+    // }
 
 }

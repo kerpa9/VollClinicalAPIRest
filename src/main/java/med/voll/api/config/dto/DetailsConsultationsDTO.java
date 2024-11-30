@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import med.voll.api.domain.consultations.ConsultationModel;
 
-public record DetailsConsultations(
+public record DetailsConsultationsDTO(
         Long id,
         Long idPhysician,
         Long idPatients,
@@ -12,7 +12,7 @@ public record DetailsConsultations(
 
 ) {
 
-    public DetailsConsultations(ConsultationModel consult) {
+    public DetailsConsultationsDTO(ConsultationModel consult) {
 
         this(consult.getId(), consult.getPhysicianModel().getId(), consult.getPatientsModel().getId(),
                 consult.getDate());

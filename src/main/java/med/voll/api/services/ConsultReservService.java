@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import med.voll.api.config.dto.ConsultationsDataDTO;
-import med.voll.api.config.dto.DetailsConsultations;
+import med.voll.api.config.dto.DetailsConsultationsDTO;
 import med.voll.api.config.handleException.ValidateException;
 import med.voll.api.domain.consultations.ConsultationModel;
 import med.voll.api.domain.consultations.validations.IValidateConsultation;
@@ -30,7 +30,7 @@ public class ConsultReservService {
     @Autowired
     private List<IValidateConsultation> validations;
 
-    public DetailsConsultations reserv(ConsultationsDataDTO consultationsDataDTO) {
+    public DetailsConsultationsDTO reserv(ConsultationsDataDTO consultationsDataDTO) {
 
         if (consultationsDataDTO.idPatients() != null
                 && !patientsRepository.existsById(consultationsDataDTO.idPatients())) {
@@ -56,7 +56,7 @@ public class ConsultReservService {
                 consultationsDataDTO.date());
         consultationRepository.save(consult);
 
-        return new DetailsConsultations(consult);
+        return new DetailsConsultationsDTO(consult);
 
     }
 
